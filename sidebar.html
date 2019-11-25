@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <base target="_top">
+        <style>
+            .b{
+                font-weight: bold;
+            }
+            .i{
+                font-style: italic;
+            }
+            .wrap{
+                word-wrap: break-word;
+            }
+            .FRight{
+                float: right;
+                margin-right: 10px;
+            }
+            .TextInput{
+                width: 100%;
+                padding: 13px 5px !important;
+                border: #DDD solid 1px !important;
+            }
+            .bottom-right{
+                margin-bottom: 10px;
+            }
+        </style>
+        <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons.css">
+    </head>
+    <body>
+        <div class="input">
+            <div class="txtbox">
+                <input type="text" id="Title" name="Title" placeholder="ie: Denver Clubs Flyer" class="TextInput"><br>
+                <p class="i wrap">Please enter the ID from the URL<br>docs.google.com/presentation/d/<span class="b">1bhw7r79MpsdpFgKpKIJgXbqdM1p-OUF791_LSAZAXf4</span>/edit<p>
+                <input type="text" id="ID" name="ID" placeholder="ie: 1bhw7r79MpsdpFgKpKIJgXbqdM1p-OUF791_LSAZAXf4" class="TextInput"><br>
+            </div>
+            <div class="buttons">
+                <a class="blue FRight" onclick="One()">Single copy</a>
+                <button class="blue FRight bottom-right" onclick="Run()">Run</button>
+            </div>
+        </div>              
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>
+            function One(value){
+                google.script.run.RunOne($('#Title').val(), $('#ID').val());
+            }
+            function Run(){
+                google.script.run.CreateFolderAndDoc($('#Title').val(), $('#ID').val());
+                setTimeout(function(){
+                    google.script.host.close(); 
+                }, 1000);
+            }
+        </script>
+        <script type="text/javascript" src="https://apis.google.com/js/api.js?onload=onApiLoad"></script>
+        
+    </body>
+</html>
